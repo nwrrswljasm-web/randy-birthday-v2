@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Randy — The Castle Remembers</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#020205;
+    color:#eee;
+}
+
+body{
+    font-family:'Cormorant Garamond',serif;
+}
+
+button,input{
+    font:inherit;
+}
+
+button{
+    padding:14px 27px;
+    border:1px solid rgba(255,255,255,.35);
+    background:rgba(0,0,0,.38);
+    color:#eee;
+    font-family:'Cinzel',serif;
+    font-size:10px;
+    letter-spacing:3px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+button:hover{
+    background:#eee;
+    color:#050509;
+    box-shadow:0 0 35px rgba(255,255,255,.15);
+}
+
+/* WORLD */
+
+#world{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 20%,#1b1118 0%,#08070b 40%,#020205 100%);
+}
+
+.stars{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1.5px),
+        radial-gradient(circle,rgba(255,255,255,.4) 1px,transparent 1.5px);
+    background-size:90px 90px,155px 155px;
+    opacity:.34;
+    animation:stars 18s linear infinite;
+}
+
+@keyframes stars{
+    to{transform:translate(-35px,20px)}
+}
+
+.moon{
+    position:absolute;
+    width:175px;
+    height:175px;
+    right:8%;
+    top:7%;
+    border-radius:50%;
+    background:#eee;
+    opacity:.15;
+    box-shadow:0 0 75px rgba(255,255,255,.16);
+}
+
+.moon:after{
+    content:"";
+    position:absolute;
+    width:175px;
+    height:175px;
+    left:-38px;
+    top:13px;
+    border-radius:50%;
+    background:#08070b;
+}
+
+/* CASTLE */
+
+.castle{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:min(1000px,115vw);
+    height:48vh;
+}
+
+.wall{
+    position:absolute;
+    left:15%;
+    bottom:0;
+    width:70%;
+    height:55%;
+    background:linear-gradient(#111117,#09090e);
+    border-top:2px solid #25252d;
+}
+
+.tower{
+    position:absolute;
+    bottom:0;
+    width:135px;
+    height:90%;
+    background:linear-gradient(90deg,#08080c,#17171e,#08080c);
+    border:2px solid #22222b;
+}
+
+.tower:before{
+    content:"";
+    position:absolute;
+    top:-75px;
+    left:50%;
+    transform:translateX(-50%);
+    border-left:70px solid transparent;
+    border-right:70px solid transparent;
+    border-bottom:80px solid #111117;
+}
+
+.leftTower{left:3%}
+.rightTower{right:3%}
+
+.mainTower{
+    left:50%;
+    transform:translateX(-50%);
+    width:210px;
+    height:100%;
+}
+
+.window{
+    position:absolute;
+    width:24px;
+    height:60px;
+    background:#050507;
+    border:2px solid #30303a;
+}
+
+.window:after{
+    content:"";
+    position:absolute;
+    inset:5px;
+    background:rgba(130,20,35,.35);
+    box-shadow:0 0 15px rgba(130,20,35,.15);
+}
+
+.w1{left:20%;top:23%}
+.w2{left:35%;top:31%}
+.w3{right:35%;top:31%}
+.w4{right:20%;top:23%}
+
+.door{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:95px;
+    height:150px;
+    border-radius:50px 50px 0 0;
+    background:#030305;
+    border:3px solid #292932;
+}
+
+.gateGlow{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:220px;
+    height:190px;
+    background:radial-gradient(ellipse,rgba(130,20,35,.22),transparent 70%);
+}
+
+/* FOG */
+
+.fog{
+    position:absolute;
+    left:-10%;
+    bottom:-60px;
+    width:120%;
+    height:230px;
+    background:rgba(190,190,205,.06);
+    filter:blur(35px);
+    animation:fog 9s ease-in-out infinite alternate;
+}
+
+@keyframes fog{
+    from{transform:translateX(-4%)}
+    to{transform:translateX(4%)}
+}
+
+/* RAIN */
+
+.rain{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.18;
+}
+
+.drop{
+    position:absolute;
+    top:-50px;
+    width:1px;
+    height:45px;
+    background:linear-gradient(transparent,#aaa);
+    animation:rain 1s linear infinite;
+}
+
+@keyframes rain{
+    to{transform:translateY(110vh)}
+}
+
+/* BATS */
+
+.bat{
+    position:absolute;
+    font-size:24px;
+    color:#111118;
+    animation:bat 10s linear infinite;
+}
+
+.b1{top:20%}
+.b2{top:34%;animation-delay:3s}
+.b3{top:13%;animation-delay:6s}
+
+@keyframes bat{
+    0%{transform:translateX(-120px)}
+    50%{transform:translateX(55vw) translateY(-50px)}
+    100%{transform:translateX(110vw) translateY(20px)}
+}
+
+/* SCENES */
+
+.scene{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    text-align:center;
+
+    opacity:0;
+    pointer-events:none;
+    transform:scale(1.04);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.scene.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:scale(1);
+}
+
+.content{
+    width:min(850px,100%);
+    position:relative;
+    z-index:20;
+}
+
+.eyebrow{
+    font-family:'Cinzel',serif;
+    font-size:10px;
+    letter-spacing:5px;
+    color:#888;
+    margin-bottom:18px;
+}
+
+h1{
+    font-family:'Cinzel',serif;
+    font-size:clamp(45px,12vw,100px);
+    font-weight:500;
+    letter-spacing:9px;
+    margin-bottom:20px;
+}
+
+h2{
+    font-family:'Cinzel',serif;
+    font-size:clamp(25px,5vw,48px);
+    font-weight:500;
+    letter-spacing:3px;
+    margin-bottom:25px;
+}
+
+p{
+    max-width:720px;
+    margin:0 auto 22px;
+    font-size:clamp(18px,3vw,24px);
+    line-height:1.6;
+    color:#d0d0d4;
+}
+
+.small{
+    font-size:16px;
+    color:#777;
+}
+
+/* VAMPIRE */
+
+.vampire{
+    position:relative;
+    width:100px;
+    height:150px;
+    margin:0 auto 25px;
+    animation:vampireFloat 3s ease-in-out infinite;
+}
+
+@keyframes vampireFloat{
+    50%{transform:translateY(-10px)}
+}
+
+.vHead{
+    position:absolute;
+    left:26px;
+    top:16px;
+    width:48px;
+    height:55px;
+    border-radius:50%;
+    background:#ddd;
+}
+
+.vHair{
+    position:absolute;
+    left:20px;
+    top:8px;
+    width:60px;
+    height:32px;
+    background:#070709;
+    border-radius:60% 60% 20% 20%;
+}
+
+.vEye{
+    position:absolute;
+    top:39px;
+    width:6px;
+    height:5px;
+    border-radius:50%;
+    background:#a21d30;
+    box-shadow:0 0 10px #a21d30;
+    z-index:3;
+}
+
+.vEye1{left:38px}
+.vEye2{left:59px}
+
+.fang{
+    position:absolute;
+    left:49px;
+    top:57px;
+    width:7px;
+    height:13px;
+    background:#fff;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+.cape{
+    position:absolute;
+    left:8px;
+    bottom:0;
+    width:84px;
+    height:80px;
+    background:#09090d;
+    clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+/* WEREWOLF */
+
+.werewolf{
+    position:relative;
+    width:120px;
+    height:155px;
+    margin:0 auto 20px;
+    animation:wolfFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes wolfFloat{
+    50%{transform:translateY(-8px)}
+}
+
+.wolfHead{
+    position:absolute;
+    left:30px;
+    top:27px;
+    width:60px;
+    height:70px;
+    border-radius:48%;
+    background:#68686d;
+}
+
+.ear{
+    position:absolute;
+    top:3px;
+    width:32px;
+    height:40px;
+    background:#5c5c62;
+    clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+.ear1{left:17px}
+.ear2{right:17px}
+
+.wolfEye{
+    position:absolute;
+    top:55px;
+    width:7px;
+    height:6px;
+    border-radius:50%;
+    background:#dca82e;
+    box-shadow:0 0 12px #dca82e;
+}
+
+.wolfEye1{left:43px}
+.wolfEye2{left:68px}
+
+.snout{
+    position:absolute;
+    left:48px;
+    top:70px;
+    width:25px;
+    height:21px;
+    background:#505055;
+    border-radius:50%;
+}
+
+.wolfBody{
+    position:absolute;
+    bottom:0;
+    left:18px;
+    width:84px;
+    height:75px;
+    background:#55555a;
+    clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+/* INPUT */
+
+input{
+    display:block;
+    width:min(420px,90%);
+    margin:22px auto;
+    padding:14px;
+
+    background:rgba(0,0,0,.55);
+    border:1px solid #333;
+    color:white;
+
+    text-align:center;
+    font-size:19px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#888;
+}
+
+.error{
+    min-height:25px;
+    margin-top:10px;
+    color:#a75c65;
+}
+
+/* SEAL */
+
+.seal{
+    width:82px;
+    height:82px;
+    margin:25px auto;
+    border:2px solid #777;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:'Cinzel',serif;
+    font-size:25px;
+
+    transition:.5s;
+}
+
+.seal.unlocking{
+    animation:sealPulse 1s ease;
+}
+
+@keyframes sealPulse{
+    50%{
+        transform:scale(1.2) rotate(180deg);
+        box-shadow:0 0 50px rgba(150,20,40,.5);
+    }
+}
+
+/* STORY */
+
+.story{
+    min-height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.storyText{
+    animation:textIn .7s ease;
+}
+
+@keyframes textIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin:18px;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#3b3b42;
+}
+
+.dot.active{
+    background:#ddd;
+}
+
+/* LETTER */
+
+.scroll{
+    max-height:58vh;
+    overflow:auto;
+
+    padding:28px;
+
+    border-top:1px solid #292932;
+    border-bottom:1px solid #292932;
+
+    text-align:left;
+    background:rgba(10,8,10,.45);
+}
+
+.scroll p{
+    font-size:19px;
+    line-height:1.65;
+    margin-bottom:18px;
+}
+
+.signature{
+    text-align:right;
+    font-family:'Cinzel',serif;
+}
+
+/* HEARTS */
+
+.heart{
+    position:fixed;
+    z-index:30;
+    pointer-events:none;
+    color:#b52b3c;
+    font-size:18px;
+    animation:heart 6s linear forwards;
+}
+
+@keyframes heart{
+    0%{
+        opacity:0;
+        transform:translateY(0) scale(.7);
+    }
+    20%{opacity:.7}
+    100%{
+        opacity:0;
+        transform:translateY(-300px) scale(1.2);
+    }
+}
+
+/* CINEMATIC FLASH */
+
+#flash{
+    position:fixed;
+    inset:0;
+    background:#fff;
+    opacity:0;
+    pointer-events:none;
+    z-index:900;
+}
+
+#flash.active{
+    animation:flash .7s ease;
+}
+
+@keyframes flash{
+    0%{opacity:0}
+    30%{opacity:.12}
+    100%{opacity:0}
+}
+
+/* FADE */
+
+#fade{
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:1000;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .8s;
+}
+
+#fade.on{
+    opacity:1;
+}
+
+/* PROGRESS */
+
+#progress{
+    position:fixed;
+    bottom:14px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:100;
+
+    font-family:'Cinzel',serif;
+    font-size:9px;
+    letter-spacing:3px;
+    color:#555;
+}
+
+/* SOUND BUTTON */
+
+#soundButton{
+    position:fixed;
+    top:14px;
+    right:14px;
+    z-index:200;
+    padding:8px 12px;
+    font-size:8px;
+}
+
+/* FINAL GLOW */
+
+.finalGlow{
+    animation:finalGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes finalGlow{
+    from{text-shadow:0 0 5px rgba(255,255,255,.1)}
+    to{text-shadow:0 0 35px rgba(150,20,40,.5)}
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .castle{
+        height:35vh;
+    }
+
+    .tower{
+        width:75px;
+    }
+
+    .tower:before{
+        top:-50px;
+        border-left-width:40px;
+        border-right-width:40px;
+        border-bottom-width:52px;
+    }
+
+    .mainTower{
+        width:125px;
+    }
+
+    .moon{
+        width:115px;
+        height:115px;
+    }
+
+    .moon:after{
+        width:115px;
+        height:115px;
+    }
+
+    .scroll{
+        max-height:52vh;
+        padding:20px;
+    }
+
+    .scroll p{
+        font-size:17px;
+    }
+
+    button{
+        padding:13px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="world">
+
+    <div class="stars"></div>
+
+    <div class="moon"></div>
+
+    <div class="castle">
+
+        <div class="tower leftTower"></div>
+        <div class="tower mainTower"></div>
+        <div class="tower rightTower"></div>
+
+        <div class="wall">
+
+            <div class="window w1"></div>
+            <div class="window w2"></div>
+            <div class="window w3"></div>
+            <div class="window w4"></div>
+
+            <div class="door"></div>
+            <div class="gateGlow"></div>
+
+        </div>
+    </div>
+
+    <div class="fog"></div>
+
+    <div class="rain" id="rain"></div>
+
+    <div class="bat b1">⌁</div>
+    <div class="bat b2">⌁</div>
+    <div class="bat b3">⌁</div>
+
+</div>
+
+<div id="flash"></div>
+<div id="fade"></div>
+
+<button id="soundButton" onclick="toggleSound()">
+    SOUND ON
+</button>
+
+<div id="progress">I / VII</div>
+
+
+<!-- SCENE 1 -->
+
+<section class="scene active" id="scene1">
+
+<div class="content">
+
+    <div class="vampire">
+
+        <div class="vHead"></div>
+        <div class="vHair"></div>
+
+        <div class="vEye vEye1"></div>
+        <div class="vEye vEye2"></div>
+
+        <div class="fang"></div>
+        <div class="cape"></div>
+
+    </div>
+
+    <div class="eyebrow">
+        An invitation from the night
+    </div>
+
+    <h1>RANDY</h1>
+
+    <p>
+        Somewhere beyond the last light of the village,
+        a little vampire has been waiting for you.
+    </p>
+
+    <p class="small">
+        Tonight, the castle remembers your name.
+    </p>
+
+    <button onclick="startAdventure()">
+        ENTER THE CASTLE
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- SCENE 2 -->
+
+<section class="scene" id="scene2">
+
+<div class="content">
+
+    <div class="eyebrow">
+        The first seal
+    </div>
+
+    <h2>
+        Only one secret opens the door.
+    </h2>
+
+    <div class="seal" id="seal">
+        N
+    </div>
+
+    <input
+        id="secret"
+        placeholder="Enter the secret"
+        autocomplete="off"
+    >
+
+    <button onclick="checkSecret()">
+        UNLOCK
+    </button>
+
+    <div class="error" id="secretError"></div>
+
+</div>
+
+</section>
+
+
+<!-- SCENE 3 -->
+
+<section class="scene" id="scene3">
+
+<div class="content">
+
+    <div class="eyebrow">
+        One final question
+    </div>
+
+    <h2>
+        There is one thing I must ask.
+    </h2>
+
+    <p class="small">
+        aiugiwgwu
+    </p>
+
+    <input
+        id="answer"
+        placeholder="Your answer"
+        autocomplete="off"
+    >
+
+    <button onclick="checkAnswer()">
+        ANSWER
+    </button>
+
+    <div class="error" id="answerError"></div>
+
+</div>
+
+</section>
+
+
+<!-- SCENE 4 -->
+
+<section class="scene" id="scene4">
+
+<div class="content">
+
+    <div class="vampire">
+
+        <div class="vHead"></div>
+        <div class="vHair"></div>
+
+        <div class="vEye vEye1"></div>
+        <div class="vEye vEye2"></div>
+
+        <div class="fang"></div>
+        <div class="cape"></div>
+
+    </div>
+
+    <div class="eyebrow">
+        The beginning
+    </div>
+
+    <div class="story">
+
+        <p id="storyText"></p>
+
+    </div>
+
+    <div class="dots">
+
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+
+    </div>
+
+    <button onclick="nextStory()">
+        CONTINUE
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- SCENE 5 -->
+
+<section class="scene" id="scene5">
+
+<div class="content">
+
+    <div class="eyebrow">
+        An old promise
+    </div>
+
+    <h2>
+        A castle. Two creatures. One story.
+    </h2>
+
+    <p>
+        You always said you wanted to become a werewolf
+        and marry me inside a huge, ancient castle —
+        somewhere old enough to belong to vampires.
+    </p>
+
+    <p>
+        So tonight, for a little while,
+        let me make that dream real.
+    </p>
+
+    <button onclick="go(6,'paper')">
+        OPEN THE OLD LETTER
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- SCENE 6 -->
+
+<section class="scene" id="scene6">
+
+<div class="content">
+
+    <div class="eyebrow">
+        A letter from the vampire
+    </div>
+
+    <div class="scroll">
+
+        <p>My dearest Randy,</p>
+
+        <p>
+            If this letter had been written a hundred years ago,
+            I would have sealed it with red wax and hidden it
+            somewhere inside the oldest room of this castle,
+            waiting for you to find it.
+        </p>
+
+        <p>
+            I still cannot believe how lucky I was that our paths crossed.
+            Somehow, you became a beautiful part of my life —
+            something I never planned for,
+            but never want to lose.
+        </p>
+
+        <p>
+            You, the werewolf.
+            Me, the vampire.
+            An impossible little story living inside an ancient castle.
+        </p>
+
+        <p>
+            And maybe that is exactly why I love it.
+            Because if eternity were real,
+            I would still choose you.
+        </p>
+
+        <p>
+            I imagine that enormous old castle you always dreamed about:
+            endless halls, ancient windows, cold moonlight,
+            and two people who keep choosing each other,
+            night after night.
+        </p>
+
+        <p>
+            I hope one day that fantasy becomes something more than a dream.
+            I hope the castle becomes a home,
+            the story becomes our life,
+            and the promise becomes marriage —
+            not for a night, but for as long as we are given.
+        </p>
+
+        <p>
+            I treasure the closeness we have shared,
+            the private moments that belong only to us,
+            and every little piece of intimacy that made our bond
+            feel more real.
+        </p>
+
+        <p>
+            You are one of the rare people I feel incredibly lucky
+            to have found.
+        </p>
+
+        <p>
+            Happy Birthday, Randy.
+            May the night be kind to you,
+            and may I always find my way back to you.
+        </p>
+
+        <p class="signature">
+            Forever yours,<br>
+            Nour 🩸
+        </p>
+
+    </div>
+
+    <br>
+
+    <button onclick="finalScene()">
+        LET THE NIGHT REMEMBER
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- SCENE 7 -->
+
+<section class="scene" id="scene7">
+
+<div class="content">
+
+    <div class="vampire">
+
+        <div class="vHead"></div>
+        <div class="vHair"></div>
+
+        <div class="vEye vEye1"></div>
+        <div class="vEye vEye2"></div>
+
+        <div class="fang"></div>
+        <div class="cape"></div>
+
+    </div>
+
+    <div class="werewolf">
+
+        <div class="ear ear1"></div>
+        <div class="ear ear2"></div>
+
+        <div class="wolfHead"></div>
+
+        <div class="wolfEye wolfEye1"></div>
+        <div class="wolfEye wolfEye2"></div>
+
+        <div class="snout"></div>
+
+        <div class="wolfBody"></div>
+
+    </div>
+
+    <div class="eyebrow">
+        Until the last night
+    </div>
+
+    <h2 class="finalGlow">
+        The castle keeps our secret.
+    </h2>
+
+    <p>
+        If eternity had a choice,
+        mine would still lead me back to you.
+    </p>
+
+    <p>
+        Happy Birthday, Randy.
+    </p>
+
+    <h2>
+        NOUR ♡ RANDY
+    </h2>
+
+    <p class="small">
+        The vampire has finally found his werewolf.
+    </p>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* ==========================================
+   GAME STATE
+========================================== */
+
+let soundEnabled = true;
+let audioContext = null;
+let storyIndex = 0;
+
+const stories = [
+
+    "I remember the little moments that made you special to me.",
+
+    "Somewhere along the way, talking to you stopped feeling like a coincidence.",
+
+    "You became someone I never wanted to lose.",
+
+    "You, the werewolf. Me, the vampire. An impossible little story inside an ancient castle.",
+
+    "And somehow, that impossible story became one of my favorite dreams."
+
+];
+
+
+/* ==========================================
+   AUDIO ENGINE
+   All effects are generated in the browser.
+========================================== */
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext =
+            new (window.AudioContext ||
+            window.webkitAudioContext)();
+
+    }
+
+    if(audioContext.state === "suspended"){
+        audioContext.resume();
+    }
+
+}
+
+
+/* Basic tone */
+
+function tone(
+    frequency,
+    duration,
+    type="sine",
+    volume=.08,
+    delay=0
+){
+
+    if(!soundEnabled)return;
+
+    initAudio();
+
+    const osc =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    osc.type=type;
+    osc.frequency.value=frequency;
+
+    gain.gain.setValueAtTime(
+        0,
+        audioContext.currentTime + delay
+    );
+
+    gain.gain.linearRampToValueAtTime(
+        volume,
+        audioContext.currentTime + delay + .02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        audioContext.currentTime + delay + duration
+    );
+
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+
+    osc.start(audioContext.currentTime + delay);
+    osc.stop(audioContext.currentTime + delay + duration + .05);
+}
+
+
+/* ==========================================
+   CINEMATIC SOUND EFFECTS
+========================================== */
+
+function doorSound(){
+
+    tone(90,.5,"sawtooth",.06);
+    tone(55,.7,"sine",.08,.1);
+    tone(220,.7,"triangle",.025,.25);
+
+}
+
+function unlockSound(){
+
+    tone(180,.18,"sine",.07);
+    tone(260,.18,"sine",.06,.12);
+    tone(390,.35,"sine",.08,.24);
+
+}
+
+function wrongSound(){
+
+    tone(110,.25,"sawtooth",.07);
+    tone(75,.35,"sawtooth",.06,.12);
+
+}
+
+function heartbeat(){
+
+    if(!soundEnabled)return;
+
+    tone(65,.12,"sine",.14);
+    tone(52,.13,"sine",.12,.18);
+
+}
+
+function whisperAtmosphere(){
+
+    tone(280,.9,"sine",.025);
+    tone(185,1.2,"triangle",.018,.35);
+
+}
+
+function questionSound(){
+
+    tone(330,.25,"triangle",.04);
+    tone(440,.4,"triangle",.05,.2);
+
+}
+
+function pageTurn(){
+
+    tone(700,.08,"triangle",.035);
+    tone(900,.12,"triangle",.025,.08);
+
+}
+
+function finalSound(){
+
+    tone(65,1.2,"sine",.09);
+    tone(130,1.5,"triangle",.06,.15);
+    tone(260,1.7,"sine",.05,.35);
+    tone(520,2,"triangle",.04,.7);
+
+}
+
+
+/* ==========================================
+   SCENE TRANSITION
+========================================== */
+
+function go(number,effect){
+
+    const fade =
+        document.getElementById("fade");
+
+    if(effect === "door"){
+        doorSound();
+    }
+
+    if(effect === "paper"){
+        pageTurn();
+    }
+
+    fade.classList.add("on");
+
+    setTimeout(()=>{
+
+        document
+            .querySelectorAll(".scene")
+            .forEach(scene=>{
+                scene.classList.remove("active");
+            });
+
+        document
+            .getElementById("scene"+number)
+            .classList.add("active");
+
+        updateProgress(number);
+
+        fade.classList.remove("on");
+
+        if(number===4){
+
+            storyIndex=0;
+
+            setTimeout(updateStory,500);
+
+        }
+
+    },550);
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+function startAdventure(){
+
+    initAudio();
+
+    doorSound();
+
+    flash();
+
+    go(2);
+
+}
+
+
+/* ==========================================
+   SECRET
+========================================== */
+
+function checkSecret(){
+
+    const input =
+        document.getElementById("secret");
+
+    const error =
+        document.getElementById("secretError");
+
+    const seal =
+        document.getElementById("seal");
+
+    if(input.value.trim()==="212"){
+
+        error.textContent="";
+
+        seal.classList.add("unlocking");
+
+        unlockSound();
+
+        flash();
+
+        createHearts();
+
+        setTimeout(()=>go(3),800);
+
+    }else{
+
+        wrongSound();
+
+        error.textContent =
+            "The castle does not recognize this secret.";
+
+    }
+
+}
+
+
+/* ==========================================
+   QUESTION
+========================================== */
+
+function checkAnswer(){
+
+    const input =
+        document.getElementById("answer");
+
+    const error =
+        document.getElementById("answerError");
+
+    if(input.value.trim()==="aifudiwdwu"){
+
+        error.textContent="";
+
+        unlockSound();
+
+        heartbeat();
+
+        createHearts();
+
+        setTimeout(()=>go(4),500);
+
+    }else{
+
+        wrongSound();
+
+        error.textContent =
+            "That is not the answer the castle is waiting for.";
+
+    }
+
+}
+
+
+/* ==========================================
+   STORY
+========================================== */
+
+function updateStory(){
+
+    const text =
+        document.getElementById("storyText");
+
+    text.classList.remove("storyText");
+
+    void text.offsetWidth;
+
+    text.classList.add("storyText");
+
+    text.textContent =
+        stories[storyIndex];
+
+    document
+        .querySelectorAll(".dot")
+        .forEach((dot,index)=>{
+
+            dot.classList.toggle(
+                "active",
+                index===storyIndex
+            );
+
+        });
+
+    heartbeat();
+
+}
+
+
+function nextStory(){
+
+    if(storyIndex < stories.length-1){
+
+        storyIndex++;
+
+        updateStory();
+
+    }else{
+
+        whisperAtmosphere();
+
+        createHearts();
+
+        go(5);
+
+    }
+
+}
+
+
+/* ==========================================
+   FINAL
+========================================== */
+
+function finalScene(){
+
+    const fade =
+        document.getElementById("fade");
+
+    finalSound();
+
+    flash();
+
+    fade.classList.add("on");
+
+    setTimeout(()=>{
+
+        document
+            .querySelectorAll(".scene")
+            .forEach(scene=>{
+                scene.classList.remove("active");
+            });
+
+        document
+            .getElementById("scene7")
+            .classList.add("active");
+
+        updateProgress(7);
+
+        fade.classList.remove("on");
+
+        createHearts();
+
+        setTimeout(createHearts,1500);
+        setTimeout(createHearts,3000);
+
+    },900);
+
+}
+
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+function updateProgress(number){
+
+    const roman=[
+        "I","II","III","IV","V","VI","VII"
+    ];
+
+    document.getElementById("progress").textContent =
+        roman[number-1]+" / VII";
+
+}
+
+
+/* ==========================================
+   FLASH
+========================================== */
+
+function flash(){
+
+    const f =
+        document.getElementById("flash");
+
+    f.classList.remove("active");
+
+    void f.offsetWidth;
+
+    f.classList.add("active");
+
+}
+
+
+/* ==========================================
+   HEARTS
+========================================== */
+
+function createHearts(){
+
+    for(let i=0;i<15;i++){
+
+        const heart =
+            document.createElement("div");
+
+        heart.className="heart";
+        heart.textContent="♡";
+
+        heart.style.left =
+            Math.random()*100+"%";
+
+        heart.style.bottom =
+            Math.random()*20+"%";
+
+        heart.style.animationDelay =
+            Math.random()*2+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(
+            ()=>heart.remove(),
+            7000
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   RAIN
+========================================== */
+
+function createRain(){
+
+    const rain =
+        document.getElementById("rain");
+
+    for(let i=0;i<75;i++){
+
+        const drop =
+            document.createElement("div");
+
+        drop.className="drop";
+
+        drop.style.left =
+            Math.random()*100+"%";
+
+        drop.style.animationDelay =
+            Math.random()*1.5+"s";
+
+        drop.style.animationDuration =
+            (.7+Math.random()*.8)+"s";
+
+        rain.appendChild(drop);
+
+    }
+
+}
+
+
+/* ==========================================
+   SOUND TOGGLE
+========================================== */
+
+function toggleSound(){
+
+    soundEnabled=!soundEnabled;
+
+    document.getElementById("soundButton")
+        .textContent =
+        soundEnabled
+        ? "SOUND ON"
+        : "SOUND OFF";
+
+    if(soundEnabled){
+        initAudio();
+        tone(440,.15,"sine",.05);
+    }
+
+}
+
+
+/* ==========================================
+   KEYBOARD SUPPORT
+========================================== */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+
+        const active =
+            document.querySelector(".scene.active");
+
+        if(active && active.id==="scene2"){
+            checkSecret();
+        }
+
+        if(active && active.id==="scene3"){
+            checkAnswer();
+        }
+
+    }
+
+});
+
+
+/* ==========================================
+   INIT
+========================================== */
+
+createRain();
+
+</script>
+
+</body>
+</html>
