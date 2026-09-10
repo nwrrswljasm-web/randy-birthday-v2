@@ -1,1113 +1,528 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Randy — The Night Remembers</title>
+
+<title>ورشة المنح الدراسية | Veritasium</title>
+
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#020205;
-    color:#eee;
-    font-family:Georgia,"Times New Roman",serif;
-}
-body{
-    position:relative;
-}
-/* ================= NIGHT ================= */
-.night{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 70% 15%,rgba(255,255,255,.08),transparent 8%),
-        radial-gradient(circle at 50% 55%,#1a101c 0%,#08060b 45%,#020204 100%);
-}
-.stars{
-    position:absolute;
-    inset:0;
-    opacity:.45;
-    background-image:
-        radial-gradient(#fff 1px,transparent 1px),
-        radial-gradient(#fff 1px,transparent 1px),
-        radial-gradient(#fff 1px,transparent 1px);
-    background-size:120px 120px,190px 190px,270px 270px;
-    background-position:10px 20px,70px 80px,140px 40px;
-}
-.moon{
-    position:absolute;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    top:8%;
-    right:12%;
-    background:#e8e1d2;
-    box-shadow:
-        0 0 25px rgba(255,245,220,.25),
-        0 0 80px rgba(255,245,220,.08);
-}
-.moon:after{
-    content:"";
-    position:absolute;
-    width:142px;
-    height:142px;
-    border-radius:50%;
-    background:#09070c;
-    left:-35px;
-    top:-8px;
-}
-/* ================= CASTLE ================= */
-.castle{
-    position:absolute;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(1000px,100%);
-    height:70%;
-}
-.wall{
-    position:absolute;
-    bottom:0;
-    left:10%;
-    right:10%;
-    height:48%;
-    background:linear-gradient(
-        90deg,
-        #09080b,
-        #18131b,
-        #0a080d
-    );
-    border-top:5px solid #29222d;
-}
-.tower{
-    position:absolute;
-    bottom:0;
-    width:145px;
-    height:82%;
-    background:linear-gradient(
-        90deg,
-        #070609,
-        #19141c,
-        #070609
-    );
-}
-.tower.left{
-    left:6%;
-}
-.tower.right{
-    right:6%;
-}
-.tower:before{
-    content:"";
-    position:absolute;
-    left:-14px;
-    top:-65px;
-    width:173px;
-    height:80px;
-    background:#17121a;
-    clip-path:polygon(
-        50% 0,
-        100% 100%,
-        0 100%
-    );
-}
-.tower:after{
-    content:"";
-    position:absolute;
-    left:20%;
-    right:20%;
-    top:20%;
-    height:2px;
-    background:#312a34;
-    box-shadow:
-        0 50px #312a34,
-        0 100px #312a34;
-    opacity:.4;
-}
-.window{
-    position:absolute;
-    width:30px;
-    height:70px;
-    left:50%;
-    top:28%;
-    transform:translateX(-50%);
-    border-radius:50% 50% 0 0;
-    background:#5e2335;
-    box-shadow:
-        0 0 10px rgba(170,40,70,.5),
-        0 0 30px rgba(170,40,70,.15);
-}
-.window:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-left:2px solid #251820;
-    border-right:2px solid #251820;
-}
-.door{
-    position:absolute;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:165px;
-    height:235px;
-    border-radius:85px 85px 0 0;
-    background:
-        linear-gradient(
-            90deg,
-            #050405,
-            #211923,
-            #050405
+    * {
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #7b1e2b;
+        --primary-dark: #54131d;
+        --gold: #b89552;
+        --bg: #f5f1ea;
+        --card: #ffffff;
+        --text: #29221e;
+        --muted: #74685f;
+        --border: #ddd2c5;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, "Tahoma", sans-serif;
+        background:
+            radial-gradient(circle at top right, rgba(184,149,82,0.10), transparent 35%),
+            linear-gradient(135deg, #f8f5f0, #eee8df);
+        color: var(--text);
+    }
+
+    .container {
+        width: min(680px, 94%);
+        margin: 30px auto;
+    }
+
+    /* الشعار */
+
+    .logo-box {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 18px;
+        text-align: center;
+        border-top: 5px solid var(--primary);
+        box-shadow: 0 8px 25px rgba(70, 45, 30, 0.10);
+    }
+
+    .logo {
+        width: 190px;
+        max-width: 70%;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
+
+    /* الهيدر */
+
+    .header {
+        position: relative;
+        overflow: hidden;
+        background: var(--card);
+        border-radius: 20px;
+        padding: 32px 28px;
+        margin-bottom: 18px;
+        border-right: 5px solid var(--primary);
+        box-shadow: 0 8px 25px rgba(70, 45, 30, 0.10);
+    }
+
+    .header::before {
+        content: "";
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        background: rgba(184,149,82,0.08);
+        border-radius: 50%;
+        top: -80px;
+        left: -50px;
+    }
+
+    .header h1 {
+        position: relative;
+        margin: 0 0 12px;
+        font-size: 31px;
+        color: var(--primary);
+    }
+
+    .header p {
+        position: relative;
+        margin: 0 0 14px;
+        line-height: 1.9;
+        color: var(--muted);
+        font-size: 16px;
+    }
+
+    .required {
+        color: #b51f35;
+    }
+
+    .note {
+        position: relative;
+        display: inline-block;
+        padding: 7px 12px;
+        background: #f7f0e4;
+        border-radius: 8px;
+        color: #7a6135;
+        font-size: 13px;
+    }
+
+    /* الأسئلة */
+
+    .question {
+        background: var(--card);
+        padding: 24px;
+        margin-bottom: 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(120,90,60,0.10);
+        border-right: 4px solid var(--gold);
+        box-shadow: 0 5px 18px rgba(70,45,30,0.07);
+        transition: 0.2s ease;
+    }
+
+    .question:focus-within {
+        border-right-color: var(--primary);
+        box-shadow: 0 7px 22px rgba(123,30,43,0.10);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 11px;
+        font-weight: bold;
+        color: #3b3029;
+        font-size: 16px;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        background: #fff;
+        color: var(--text);
+        font-family: inherit;
+        transition: 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(123,30,43,0.08);
+    }
+
+    input::placeholder {
+        color: #aaa09a;
+    }
+
+    /* خيارات الحضور */
+
+    .options {
+        margin-top: 5px;
+    }
+
+    .options label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 13px 0;
+        padding: 12px;
+        border-radius: 9px;
+        font-weight: normal;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .options label:hover {
+        background: #f8f3ec;
+    }
+
+    .options input {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    /* زر التسجيل */
+
+    button {
+        width: 100%;
+        padding: 16px;
+        margin-top: 4px;
+        background: linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
         );
-    border:5px solid #332934;
-    box-shadow:
-        inset 0 0 35px #000,
-        0 0 25px rgba(0,0,0,.8);
-}
-.door:after{
-    content:"";
-    position:absolute;
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#c6a86e;
-    right:24px;
-    top:53%;
-    box-shadow:0 0 8px rgba(210,170,90,.4);
-}
-/* ================= FOG ================= */
-.fog{
-    position:absolute;
-    bottom:-5%;
-    left:-25%;
-    width:150%;
-    height:40%;
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(200,200,210,.13),
-            transparent 70%
-        );
-    filter:blur(20px);
-    animation:fogMove 14s ease-in-out infinite alternate;
-}
-@keyframes fogMove{
-    from{
-        transform:translateX(-5%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: inherit;
+        cursor: pointer;
+        box-shadow: 0 7px 18px rgba(123,30,43,0.20);
+        transition: 0.25s ease;
     }
-    to{
-        transform:translateX(5%);
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(123,30,43,0.25);
     }
-}
-/* ================= RAIN ================= */
-.rain{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    opacity:.22;
-}
-.drop{
-    position:absolute;
-    width:1px;
-    height:70px;
-    background:linear-gradient(
-        transparent,
-        rgba(255,255,255,.35)
-    );
-    animation:rainFall linear infinite;
-}
-@keyframes rainFall{
-    from{
-        transform:translateY(-100px);
+
+    button:active {
+        transform: translateY(0);
     }
-    to{
-        transform:translateY(110vh);
+
+    button:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        transform: none;
     }
-}
-/* ================= BATS ================= */
-.bat{
-    position:absolute;
-    color:#111;
-    font-size:25px;
-    opacity:.7;
-    animation:batFly 9s linear infinite;
-}
-@keyframes batFly{
-    0%{
-        transform:translate(-100px,0) scale(.6);
-        opacity:0;
+
+    /* رسائل الحالة */
+
+    #success {
+        display: none;
+        background: #f0eadc;
+        color: #67501f;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        margin-top: 16px;
+        font-size: 17px;
+        border: 1px solid #d8c69b;
     }
-    10%{
-        opacity:.8;
+
+    #error {
+        display: none;
+        background: #f8e7e8;
+        color: var(--primary);
+        padding: 16px;
+        border-radius: 12px;
+        text-align: center;
+        margin-top: 16px;
+        border: 1px solid #dfb8bd;
     }
-    50%{
-        transform:translate(50vw,-100px) scale(1);
+
+    /* الفوتر */
+
+    .footer {
+        text-align: center;
+        margin: 25px 0 15px;
+        color: #8b7d71;
+        font-size: 12px;
+        letter-spacing: 0.5px;
     }
-    100%{
-        transform:translate(110vw,50px) scale(.7);
-        opacity:0;
+
+    /* الهاتف */
+
+    @media (max-width: 600px) {
+
+        .container {
+            width: 94%;
+            margin: 14px auto;
+        }
+
+        .logo-box {
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .logo {
+            width: 165px;
+        }
+
+        .header {
+            padding: 25px 21px;
+            border-radius: 16px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+        }
+
+        .header p {
+            font-size: 15px;
+        }
+
+        .question {
+            padding: 19px;
+            border-radius: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 13px;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 17px;
+        }
     }
-}
-/* ================= SCENES ================= */
-.scene{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:25px;
-    z-index:10;
-}
-.scene.active{
-    display:flex;
-    animation:sceneIn 1.2s ease;
-}
-@keyframes sceneIn{
-    from{
-        opacity:0;
-        transform:scale(1.04);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-.panel{
-    width:min(720px,94%);
-    padding:42px 28px;
-    background:rgba(5,4,8,.76);
-    border:1px solid rgba(190,150,90,.35);
-    box-shadow:
-        0 0 50px rgba(0,0,0,.8),
-        inset 0 0 30px rgba(255,255,255,.015);
-    backdrop-filter:blur(8px);
-}
-.kicker{
-    color:#b99a65;
-    letter-spacing:5px;
-    text-transform:uppercase;
-    font-size:11px;
-    margin-bottom:22px;
-}
-h1{
-    font-size:clamp(45px,9vw,85px);
-    font-weight:normal;
-    letter-spacing:2px;
-    margin-bottom:18px;
-}
-h2{
-    font-size:clamp(27px,5vw,46px);
-    font-weight:normal;
-    margin-bottom:20px;
-}
-p{
-    color:#d0cbd0;
-    line-height:1.85;
-    font-size:16px;
-}
-button{
-    margin-top:30px;
-    padding:14px 30px;
-    background:transparent;
-    border:1px solid #a08050;
-    color:#eee4d5;
-    font-family:Georgia,"Times New Roman",serif;
-    letter-spacing:2px;
-    cursor:pointer;
-    transition:.35s;
-}
-button:hover{
-    background:#a08050;
-    color:#08070b;
-    box-shadow:
-        0 0 30px rgba(180,140,80,.25);
-}
-input{
-    margin-top:28px;
-    width:min(340px,90%);
-    padding:14px 16px;
-    background:#08070b;
-    border:1px solid #584a5e;
-    color:#fff;
-    text-align:center;
-    font-family:Georgia,serif;
-    font-size:16px;
-    outline:none;
-}
-input:focus{
-    border-color:#a08050;
-    box-shadow:0 0 20px rgba(160,128,80,.12);
-}
-.error{
-    min-height:22px;
-    margin-top:15px;
-    color:#b64a5e;
-    font-size:14px;
-}
-.story{
-    min-height:110px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    line-height:1.7;
-    font-style:italic;
-    color:#e1d9df;
-}
-/* ================= PARCHMENT ================= */
-.parchment{
-    width:min(760px,94%);
-    max-height:78vh;
-    overflow:auto;
-    padding:42px 34px;
-    text-align:left;
-    background:
-        linear-gradient(
-            rgba(220,201,158,.96),
-            rgba(196,171,124,.96)
-        );
-    color:#2d2019;
-    box-shadow:
-        0 0 50px rgba(0,0,0,.9),
-        inset 0 0 35px rgba(70,40,20,.12);
-    border:1px solid #9e8055;
-}
-.parchment h2{
-    color:#2b1d17;
-    font-family:"Times New Roman",serif;
-}
-.parchment p{
-    color:#35251d;
-    margin-bottom:18px;
-    line-height:1.75;
-}
-/* ================= HEARTS ================= */
-.heart{
-    position:fixed;
-    color:#96354d;
-    font-size:18px;
-    pointer-events:none;
-    z-index:40;
-    animation:heartFloat 4s linear forwards;
-}
-@keyframes heartFloat{
-    0%{
-        transform:translateY(0) scale(.5) rotate(0);
-        opacity:0;
-    }
-    20%{
-        opacity:1;
-    }
-    100%{
-        transform:
-            translateY(-260px)
-            scale(1.2)
-            rotate(25deg);
-        opacity:0;
-    }
-}
-/* ================= SOUND BUTTON ================= */
-.sound{
-    position:fixed;
-    top:15px;
-    right:15px;
-    z-index:100;
-    margin:0;
-    padding:8px 12px;
-    font-size:10px;
-    letter-spacing:1px;
-}
-/* ================= MOBILE ================= */
-@media(max-width:600px){
-    .moon{
-        width:95px;
-        height:95px;
-        right:6%;
-        top:8%;
-    }
-    .moon:after{
-        width:90px;
-        height:90px;
-        left:-24px;
-    }
-    .tower{
-        width:95px;
-    }
-    .tower:before{
-        width:123px;
-        left:-14px;
-    }
-    .door{
-        width:110px;
-        height:175px;
-    }
-    .panel{
-        padding:32px 18px;
-    }
-    p{
-        font-size:14px;
-    }
-    .story{
-        font-size:18px;
-    }
-    .parchment{
-        padding:25px 20px;
-        max-height:72vh;
-    }
-}
 </style>
 </head>
+
 <body>
-<div class="night">
-    <div class="stars"></div>
-    <div class="moon"></div>
-    <div class="castle">
-        <div class="tower left">
-            <div class="window"></div>
-        </div>
-        <div class="tower right">
-            <div class="window"></div>
-        </div>
-        <div class="wall"></div>
-        <div class="door"></div>
+
+<div class="container">
+
+    <!-- الشعار -->
+    <div class="logo-box">
+        <img
+            src="veritasium-logo.jpeg"
+            alt="شعار Veritasium"
+            class="logo">
     </div>
-    <div class="fog"></div>
-    <div class="rain" id="rain"></div>
+
+
+    <!-- مقدمة الورشة -->
+    <div class="header">
+
+        <h1>ورشة المنح الدراسية</h1>
+
+        <p>
+            أهلاً بك في ورشة المنح الدراسية.
+            يرجى تعبئة المعلومات التالية لإتمام التسجيل
+            والحصول على تفاصيل الورشة.
+        </p>
+
+        <div class="note">
+            <span class="required">*</span>
+            جميع الحقول المطلوبة يجب تعبئتها
+        </div>
+
+    </div>
+
+
+    <!-- الاستمارة -->
+    <form
+        id="registrationForm"
+        action="https://formsubmit.co/nwrrswljasm@gmail.com"
+        method="POST">
+
+        <!-- إعدادات البريد -->
+
+        <input
+            type="hidden"
+            name="_subject"
+            value="تسجيل لورشة المنح">
+
+        <input
+            type="hidden"
+            name="_template"
+            value="table">
+
+        <input
+            type="hidden"
+            name="_captcha"
+            value="false">
+
+
+        <!-- الاسم -->
+
+        <div class="question">
+
+            <label>
+                الاسم الثلاثي بالعربي
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                name="full_name"
+                placeholder="اكتب اسمك الثلاثي بالعربي"
+                maxlength="100"
+                autocomplete="name"
+                required>
+
+        </div>
+
+
+        <!-- العمر -->
+
+        <div class="question">
+
+            <label>
+                العمر
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="number"
+                name="age"
+                placeholder="اكتب عمرك"
+                min="1"
+                max="120"
+                required>
+
+        </div>
+
+
+        <!-- التليجرام -->
+
+        <div class="question">
+
+            <label>
+                معرف التليجرام
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                name="telegram"
+                placeholder="@username"
+                maxlength="100"
+                required>
+
+        </div>
+
+
+        <!-- تأكيد الحضور -->
+
+        <div class="question">
+
+            <label>
+                هل أنت متأكد من حضورك؟
+                <span class="required">*</span>
+            </label>
+
+            <div class="options">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="attendance"
+                        value="نعم"
+                        required>
+                    نعم، سأحضر
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="attendance"
+                        value="لا">
+                    لا، لن أتمكن من الحضور
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="attendance"
+                        value="ربما">
+                    ربما
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- زر التسجيل -->
+
+        <button
+            type="submit"
+            id="submitButton">
+
+            تسجيل في الورشة
+
+        </button>
+
+    </form>
+
+
+    <!-- نجاح -->
+
+    <div id="success">
+        ✅ تم تسجيلك في ورشة المنح الدراسية بنجاح!
+    </div>
+
+
+    <!-- خطأ -->
+
+    <div id="error">
+        ❌ حدث خطأ أثناء الإرسال. حاول مرة أخرى.
+    </div>
+
+
+    <!-- الفوتر -->
+
+    <div class="footer">
+        Veritasium • Research • Discover • Understand
+    </div>
+
 </div>
-<button class="sound" id="soundBtn" onclick="toggleSound()">
-    SOUND ON
-</button>
-<!-- ================= INVITATION ================= -->
-<section class="scene active" id="scene1">
-    <div class="panel">
-        <div class="kicker">
-            An invitation from the night
-        </div>
-        <h1>Randy</h1>
-        <p>
-            Tonight, the castle remembers your name.
-            <br>
-            A little vampire has been waiting for you.
-        </p>
-        <button onclick="startAdventure()">
-            ENTER THE CASTLE
-        </button>
-    </div>
-</section>
-<!-- ================= SECRET ================= -->
-<section class="scene" id="scene2">
-    <div class="panel">
-        <div class="kicker">
-            The first seal
-        </div>
-        <h2>
-            Only the chosen may enter.
-        </h2>
-        <p>
-            Three numbers.
-            One secret.
-        </p>
-        <input
-            id="secret"
-            type="text"
-            maxlength="3"
-            placeholder="•••"
-        >
-        <br>
-        <button onclick="checkSecret()">
-            UNLOCK
-        </button>
-        <div class="error" id="secretError"></div>
-    </div>
-</section>
-<!-- ================= QUESTION ================= -->
-<section class="scene" id="scene3">
-    <div class="panel">
-        <div class="kicker">
-            A question from the dark
-        </div>
-        <h2>
-            aiugiwgwu
-        </h2>
-        <p>
-            There is only one answer.
-        </p>
-        <input
-            id="answer"
-            type="text"
-            placeholder="Your answer"
-        >
-        <br>
-        <button onclick="checkAnswer()">
-            ANSWER
-        </button>
-        <div class="error" id="answerError"></div>
-    </div>
-</section>
-<!-- ================= STORY ================= -->
-<section class="scene" id="scene4">
-    <div class="panel">
-        <div class="kicker">
-            The story begins
-        </div>
-        <div class="story" id="storyText"></div>
-        <button onclick="nextStory()">
-            CONTINUE
-        </button>
-    </div>
-</section>
-<!-- ================= PROMISE ================= -->
-<section class="scene" id="scene5">
-    <div class="panel">
-        <div class="kicker">
-            An old promise
-        </div>
-        <h2>
-            The werewolf's dream
-        </h2>
-        <p>
-            You once told me that you wanted
-            to become a werewolf...
-            <br><br>
-            And marry your vampire inside
-            an enormous, ancient castle.
-        </p>
-        <button onclick="showLetter()">
-            OPEN THE LETTER
-        </button>
-    </div>
-</section>
-<!-- ================= LETTER ================= -->
-<section class="scene" id="scene6">
-    <div class="parchment">
-        <h2>
-            My dearest Randy,
-        </h2>
-        <p>
-            If this letter had been written a hundred years ago,
-            I would have sealed it with red wax and hidden it
-            somewhere inside the oldest room of this castle,
-            waiting for you to find it.
-        </p>
-        <p>
-            I still cannot believe how lucky I was that our paths crossed.
-            Somehow, you became a beautiful part of my life —
-            something I never planned for, but never want to lose.
-        </p>
-        <p>
-            You, the werewolf.
-            Me, the vampire.
-            An impossible little story living inside an ancient castle.
-        </p>
-        <p>
-            And maybe that is exactly why I love it.
-            Because if eternity were real,
-            I would still choose you.
-        </p>
-        <p>
-            I imagine that enormous old castle you always dreamed about:
-            endless halls, ancient windows, cold moonlight,
-            and two people who keep choosing each other,
-            night after night.
-        </p>
-        <p>
-            I hope one day that fantasy becomes something more than a dream.
-            I hope the castle becomes a home,
-            the story becomes our life,
-            and the promise becomes marriage —
-            not for a night, but for as long as we are given.
-        </p>
-        <p>
-            I treasure the closeness we have shared,
-            the private moments that belong only to us,
-            and every little piece of intimacy that made our bond feel more real.
-        </p>
-        <p>
-            You are one of the rare people
-            I feel incredibly lucky to have found.
-        </p>
-        <p>
-            Happy Birthday, Randy.
-            May the night be kind to you,
-            and may I always find my way back to you.
-        </p>
-        <p>
-            Forever yours,
-            <br>
-            Nour 🩸
-        </p>
-        <div style="text-align:center">
-            <button onclick="finale()">
-                TURN THE PAGE
-            </button>
-        </div>
-    </div>
-</section>
-<!-- ================= FINALE ================= -->
-<section class="scene" id="scene7">
-    <div class="panel">
-        <div class="kicker">
-            The end of the night
-        </div>
-        <h1>
-            Randy ♡ Nour
-        </h1>
-        <h2>
-            The castle keeps our secret.
-        </h2>
-        <p>
-            If eternity had a choice,
-            mine would still lead me back to you.
-        </p>
-        <p style="margin-top:25px">
-            Happy Birthday, Randy.
-        </p>
-        <p
-            style="
-                margin-top:30px;
-                color:#b99a65;
-                letter-spacing:5px;
-            "
-        >
-            NOUR ♡ RANDY
-        </p>
-        <p
-            style="
-                margin-top:15px;
-                font-size:12px;
-            "
-        >
-            The vampire has finally found his werewolf.
-        </p>
-    </div>
-</section>
+
+
 <script>
-/* ================= AUDIO ================= */
-let soundEnabled = true;
-let audioContext = null;
-function initAudio(){
-    if(!audioContext){
-        audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-    }
-    if(audioContext.state === "suspended"){
-        audioContext.resume();
-    }
-}
-function tone(
-    frequency,
-    duration,
-    type="sine",
-    volume=.04
-){
-    if(!soundEnabled) return;
-    initAudio();
-    const oscillator =
-        audioContext.createOscillator();
-    const gain =
-        audioContext.createGain();
-    oscillator.type = type;
-    oscillator.frequency.value =
-        frequency;
-    gain.gain.setValueAtTime(
-        volume,
-        audioContext.currentTime
-    );
-    gain.gain.exponentialRampToValueAtTime(
-        .001,
-        audioContext.currentTime + duration
-    );
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
-    oscillator.start();
-    oscillator.stop(
-        audioContext.currentTime + duration
-    );
-}
-/* ================= DOOR ================= */
-function doorSound(){
-    tone(65,.35,"sine",.08);
-    setTimeout(()=>{
-        tone(48,.5,"triangle",.06);
-    },180);
-}
-/* ================= UNLOCK ================= */
-function unlockSound(){
-    tone(300,.12,"sine",.05);
-    setTimeout(()=>{
-        tone(420,.15,"sine",.05);
-    },100);
-    setTimeout(()=>{
-        tone(620,.3,"sine",.05);
-    },220);
-}
-/* ================= WRONG ================= */
-function wrongSound(){
-    tone(
-        95,
-        .3,
-        "sawtooth",
-        .045
-    );
-}
-/* ================= HEARTBEAT ================= */
-function heartbeat(){
-    if(!soundEnabled) return;
-    tone(70,.11,"sine",.08);
-    setTimeout(()=>{
-        tone(55,.11,"sine",.08);
-    },170);
-}
-/* ================= WHISPER ATMOSPHERE ================= */
-function whisperAtmosphere(){
-    if(!soundEnabled) return;
-    tone(
-        130,
-        1.4,
-        "triangle",
-        .015
-    );
-}
-/* ================= QUESTION ================= */
-function questionSound(){
-    tone(
-        180,
-        .25,
-        "triangle",
-        .035
-    );
-    setTimeout(()=>{
-        tone(
-            240,
-            .4,
-            "triangle",
-            .025
-        );
-    },180);
-}
-/* ================= PAGE TURN ================= */
-function pageTurn(){
-    tone(
-        500,
-        .08,
-        "triangle",
-        .025
-    );
-    setTimeout(()=>{
-        tone(
-            700,
-            .12,
-            "triangle",
-            .02
-        );
-    },100);
-}
-/* ================= FINAL SOUND ================= */
-function finalSound(){
-    tone(180,.15,"sine",.04);
-    setTimeout(()=>{
-        tone(250,.2,"sine",.04);
-    },150);
-    setTimeout(()=>{
-        tone(360,.3,"sine",.05);
-    },320);
-    setTimeout(()=>{
-        tone(520,.6,"sine",.035);
-    },520);
-}
-/* ================= SCENE ================= */
-function showScene(number){
-    document
-        .querySelectorAll(".scene")
-        .forEach(scene=>{
-            scene.classList.remove("active");
-        });
-    const scene =
-        document.getElementById(
-            "scene"+number
-        );
-    if(scene){
-        scene.classList.add("active");
-        document.body.animate(
-            [
-                {
-                    opacity:1
-                },
-                {
-                    opacity:.3
-                },
-                {
-                    opacity:1
-                }
-            ],
-            {
-                duration:600,
-                easing:"ease-in-out"
-            }
-        );
-    }
-}
-/* ================= START ================= */
-function startAdventure(){
-    initAudio();
-    doorSound();
-    heartbeat();
-    setTimeout(()=>{
-        whisperAtmosphere();
-    },600);
-    showScene(2);
-}
-/* ================= SECRET ================= */
-function checkSecret(){
-    initAudio();
-    const value =
-        document
-        .getElementById("secret")
-        .value
-        .trim();
-    const error =
-        document
-        .getElementById("secretError");
-    if(value === "212"){
-        unlockSound();
-        createHearts(8);
-        setTimeout(()=>{
-            showScene(3);
-            questionSound();
-        },350);
-    }else{
-        wrongSound();
-        error.textContent =
-            "The castle rejects the wrong number.";
-    }
-}
-/* ================= ANSWER ================= */
-function checkAnswer(){
-    initAudio();
-    const value =
-        document
-        .getElementById("answer")
-        .value
-        .trim()
-        .toLowerCase();
-    const error =
-        document
-        .getElementById("answerError");
-    if(value === "aifudiwdwu"){
-        unlockSound();
-        setTimeout(()=>{
-            showScene(4);
-            storyIndex=0;
-            updateStory();
-        },350);
-    }else{
-        wrongSound();
-        error.textContent =
-            "That is not the answer the night remembers.";
-    }
-}
-/* ================= STORY ================= */
-const stories = [
-    "I remember the little moments that made you special to me.",
-    "Somewhere along the way, talking to you stopped feeling like a coincidence.",
-    "You became someone I never wanted to lose.",
-    "You, the werewolf. Me, the vampire. An impossible little story inside an ancient castle.",
-    "And somehow, that impossible story became one of my favorite dreams."
-];
-let storyIndex = 0;
-function updateStory(){
-    const text =
-        document.getElementById(
-            "storyText"
-        );
-    text.style.opacity="0";
-    setTimeout(()=>{
-        text.textContent =
-            stories[storyIndex];
-        text.animate(
-            [
-                {
-                    opacity:0,
-                    transform:"translateY(12px)"
-                },
-                {
-                    opacity:1,
-                    transform:"translateY(0)"
-                }
-            ],
-            {
-                duration:700,
-                easing:"ease-out",
-                fill:"forwards"
-            }
-        );
-    },200);
-}
-function nextStory(){
-    pageTurn();
-    storyIndex++;
-    if(
-        storyIndex <
-        stories.length
-    ){
-        updateStory();
-    }else{
-        showScene(5);
-    }
-}
-/* ================= LETTER ================= */
-function showLetter(){
-    pageTurn();
-    setTimeout(()=>{
-        showScene(6);
-    },250);
-}
-/* ================= FINALE ================= */
-function finale(){
-    pageTurn();
-    setTimeout(()=>{
-        finalSound();
-        createHearts(25);
-        showScene(7);
-    },400);
-}
-/* ================= HEARTS ================= */
-function createHearts(amount){
-    for(
-        let i=0;
-        i<amount;
-        i++
-    ){
-        setTimeout(()=>{
-            const heart =
-                document.createElement("div");
-            heart.className="heart";
-            heart.textContent="♥";
-            heart.style.left =
-                Math.random()*100+"vw";
-            heart.style.bottom =
-                Math.random()*20+"vh";
-            heart.style.fontSize =
-                (12+Math.random()*22)+"px";
-            heart.style.animationDuration =
-                (3+Math.random()*2)+"s";
-            document.body.appendChild(
-                heart
-            );
-            setTimeout(()=>{
-                heart.remove();
-            },5000);
-        },i*90);
-    }
-}
-/* ================= RAIN ================= */
-function createRain(){
-    const rain =
-        document.getElementById("rain");
-    for(
-        let i=0;
-        i<100;
-        i++
-    ){
-        const drop =
-            document.createElement("div");
-        drop.className="drop";
-        drop.style.left =
-            Math.random()*100+"vw";
-        drop.style.animationDuration =
-            (.5+Math.random()*.7)+"s";
-        drop.style.animationDelay =
-            Math.random()*2+"s";
-        rain.appendChild(drop);
-    }
-}
-/* ================= BATS ================= */
-function createBats(){
-    for(
-        let i=0;
-        i<6;
-        i++
-    ){
-        const bat =
-            document.createElement("div");
-        bat.className="bat";
-        bat.textContent="🦇";
-        bat.style.top =
-            (10+Math.random()*35)+"%";
-        bat.style.animationDelay =
-            Math.random()*8+"s";
-        bat.style.animationDuration =
-            (7+Math.random()*5)+"s";
-        document.querySelector(".night")
-            .appendChild(bat);
-    }
-}
-/* ================= SOUND TOGGLE ================= */
-function toggleSound(){
-    soundEnabled =
-        !soundEnabled;
-    document.getElementById(
-        "soundBtn"
-    ).textContent =
-        soundEnabled
-        ? "SOUND ON"
-        : "SOUND OFF";
-    if(soundEnabled){
-        initAudio();
-        tone(
-            420,
-            .12,
-            "sine",
-            .04
-        );
-    }
-}
-/* ================= ENTER KEY ================= */
-document.addEventListener(
-    "keydown",
-    function(event){
-        if(event.key !== "Enter")
-            return;
-        const active =
-            document.querySelector(
-                ".scene.active"
-            );
-        if(!active)
-            return;
-        if(active.id === "scene2"){
-            checkSecret();
-        }
-        if(active.id === "scene3"){
-            checkAnswer();
-        }
-    }
-);
-/* ================= INIT ================= */
-createRain();
-createBats();
-setInterval(()=>{
-    const active =
-        document.querySelector(
-            ".scene.active"
-        );
-    if(
-        active &&
-        active.id === "scene7"
-    ){
-        createHearts(1);
-    }
-},3000);
+
+const form = document.getElementById("registrationForm");
+const button = document.getElementById("submitButton");
+const success = document.getElementById("success");
+const error = document.getElementById("error");
+
+form.addEventListener("submit", function () {
+
+    button.disabled = true;
+    button.textContent = "جارٍ إرسال التسجيل...";
+
+    error.style.display = "none";
+
+});
+
 </script>
+
 </body>
 </html>
