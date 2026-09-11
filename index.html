@@ -1,1 +1,1733 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>أثر الخالدين | فريق البحث العلمي والابتكار</title>
+
+    <meta name="description"
+          content="فريق أثر الخالدين للبحث العلمي والابتكار والقيادة والتنمية الشبابية">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background: #f5f7fa;
+            color: #17202a;
+            line-height: 1.9;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        header {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #071a2d 0%,
+                    #0d3554 48%,
+                    #123f60 100%
+                );
+
+            color: white;
+        }
+
+        header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+            height: 520px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(76, 190, 255, 0.08);
+
+            top: -200px;
+            left: -150px;
+        }
+
+        header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 360px;
+            height: 360px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            bottom: -180px;
+            right: -100px;
+        }
+
+        /* ==============================
+           NAVIGATION
+        ============================== */
+
+        nav {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            z-index: 10;
+
+            padding: 22px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+
+            gap: 25px;
+
+            list-style: none;
+
+            color: #d4e8f5;
+
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: #70c9ff;
+        }
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .hero {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 850px;
+
+            padding: 100px 0;
+        }
+
+        .eyebrow {
+            color: #70c9ff;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(45px, 9vw, 90px);
+
+            line-height: 1.05;
+
+            margin-bottom: 22px;
+
+            letter-spacing: -2px;
+        }
+
+        .hero h2 {
+            font-size:
+                clamp(19px, 3vw, 29px);
+
+            font-weight: normal;
+
+            color: #d9edf9;
+
+            margin-bottom: 22px;
+        }
+
+        .hero-description {
+            color: #b9d3e4;
+
+            max-width: 750px;
+
+            font-size: 17px;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 12px 23px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .button-primary {
+            background: white;
+
+            color: #0d3554;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-3px);
+
+            background: #dff3ff;
+        }
+
+        .button-outline {
+            border:
+                1px solid rgba(255,255,255,0.35);
+
+            color: white;
+        }
+
+        .button-outline:hover {
+            background:
+                rgba(255,255,255,0.08);
+        }
+
+        /* ==============================
+           SECTIONS
+        ============================== */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-label {
+            color: #2474a6;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size:
+                clamp(30px, 5vw, 48px);
+
+            color: #102a43;
+
+            line-height: 1.25;
+
+            margin-bottom: 18px;
+        }
+
+        .section-intro {
+            max-width: 780px;
+
+            color: #607d8b;
+
+            font-size: 16px;
+
+            margin-bottom: 45px;
+        }
+
+        /* ==============================
+           PROFILE
+        ============================== */
+
+        .profile-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.4fr 1fr;
+
+            gap: 50px;
+
+            align-items: start;
+        }
+
+        .profile-text {
+            font-size: 17px;
+
+            color: #455a64;
+        }
+
+        .profile-text p {
+            margin-bottom: 18px;
+        }
+
+        .mission-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid #e0e6eb;
+
+            box-shadow:
+                0 15px 40px
+                rgba(20, 50, 70, 0.06);
+        }
+
+        .mission-card h3 {
+            color: #102a43;
+
+            margin-bottom: 10px;
+        }
+
+        .mission-card p {
+            color: #607d8b;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        /* ==============================
+           STATS
+        ============================== */
+
+        .stats {
+            background: #102a43;
+
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+
+            padding: 25px 10px;
+
+            border-left:
+                1px solid
+                rgba(255,255,255,0.12);
+        }
+
+        .stat:last-child {
+            border-left: none;
+        }
+
+        .stat-number {
+            display: block;
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            color: #72caff;
+
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            display: block;
+
+            margin-top: 8px;
+
+            color: #c5d9e7;
+
+            font-size: 14px;
+        }
+
+        /* ==============================
+           ACHIEVEMENTS
+        ============================== */
+
+        .achievements-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .achievement {
+            background: white;
+
+            padding: 28px;
+
+            border:
+                1px solid #e1e7eb;
+
+            border-radius: 10px;
+
+            transition: 0.25s;
+        }
+
+        .achievement:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(15, 50, 70, 0.08);
+        }
+
+        .achievement-number {
+            color: #4aa8d8;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+        .achievement h3 {
+            color: #102a43;
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .achievement p {
+            color: #607d8b;
+
+            font-size: 14px;
+        }
+
+        /* ==============================
+           PROJECTS
+        ============================== */
+
+        .projects {
+            background: #eef3f7;
+        }
+
+        .project {
+            background: white;
+
+            padding: 35px;
+
+            margin-bottom: 18px;
+
+            border-right:
+                4px solid #2474a6;
+
+            border-radius: 10px 0 0 10px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(20, 50, 70, 0.04);
+        }
+
+        .project h3 {
+            color: #102a43;
+
+            font-size: 23px;
+
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: #607d8b;
+
+            max-width: 850px;
+        }
+
+        .tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: #eaf4fa;
+
+            color: #1c638c;
+
+            padding: 5px 11px;
+
+            border-radius: 4px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        /* ==============================
+           DEPARTMENTS
+        ============================== */
+
+        .departments-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .department {
+            padding: 25px;
+
+            background: white;
+
+            border:
+                1px solid #e1e7eb;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .department:hover {
+            transform: translateY(-4px);
+
+            border-color: #9ccce5;
+        }
+
+        .department h3 {
+            color: #102a43;
+
+            margin-bottom: 8px;
+        }
+
+        .department p {
+            color: #607d8b;
+
+            font-size: 14px;
+        }
+
+        /* ==============================
+           LEADERSHIP
+        ============================== */
+
+        .leadership {
+            background: #102a43;
+
+            color: white;
+        }
+
+        .leadership .section-label {
+            color: #72caff;
+        }
+
+        .leadership .section-title {
+            color: white;
+        }
+
+        .leadership .section-intro {
+            color: #bdd4e3;
+        }
+
+        .leadership-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .leadership-item {
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            padding: 20px;
+
+            border-radius: 7px;
+
+            color: #d4e6f1;
+        }
+
+        .leadership-item strong {
+            display: block;
+
+            color: white;
+
+            margin-bottom: 5px;
+        }
+
+        /* ==============================
+           COMPETENCIES
+        ============================== */
+
+        .competencies {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .competency {
+            padding: 10px 16px;
+
+            background: #102a43;
+
+            color: white;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+        }
+
+        /* ==============================
+           IMPACT
+        ============================== */
+
+        .impact-box {
+            background: white;
+
+            border:
+                1px solid #dce4e9;
+
+            border-radius: 12px;
+
+            padding: 45px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 45px
+                rgba(20,50,70,0.06);
+        }
+
+        .impact-box h2 {
+            font-size:
+                clamp(28px, 5vw, 48px);
+
+            color: #102a43;
+
+            margin-bottom: 12px;
+        }
+
+        .impact-box p {
+            max-width: 750px;
+
+            margin: auto;
+
+            color: #607d8b;
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            background: #071a2d;
+
+            color: white;
+
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+        .footer-title {
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+        .footer-subtitle {
+            color: #91b0c4;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+        .footer-slogan {
+            color: #72caff;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            text-align: left;
+        }
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .stat {
+                border-left: none;
+
+                border-bottom:
+                    1px solid
+                    rgba(255,255,255,0.12);
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .departments-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .footer-slogan {
+                text-align: right;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .departments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                padding: 25px;
+            }
+
+            .impact-box {
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header id="home">
+
+    <nav>
+
+        <div class="container nav-inner">
+
+            <div class="logo">
+                أثر الخالدين
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#profile">
+                        عن الفريق
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#achievements">
+                        الإنجازات
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#projects">
+                        الأبحاث
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#departments">
+                        الأقسام
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#leadership">
+                        القيادة
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <div class="hero">
+
+            <div class="eyebrow">
+                بحث علمي • ابتكار • قيادة • أثر مجتمعي
+            </div>
+
+            <h1>
+                أثر<br>
+                الخالدين
+            </h1>
+
+            <h2>
+                فريق شبابي للبحث العلمي والابتكار والتنمية
+            </h2>
+
+            <p class="hero-description">
+
+                بيئة شبابية متعددة التخصصات تجمع بين البحث العلمي،
+                الابتكار، التكنولوجيا، القيادة، التطوير الأكاديمي،
+                والمشاركة المجتمعية لصناعة أثر حقيقي ومستدام.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#achievements"
+                    class="button button-primary">
+
+                    استكشف الإنجازات
+
+                </a>
+
+                <a
+                    href="#projects"
+                    class="button button-outline">
+
+                    الملف البحثي
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ======================================================
+     PROFILE
+====================================================== -->
+
+<section id="profile">
+
+    <div class="container">
+
+        <div class="section-label">
+            01 — الملف المؤسسي
+        </div>
+
+        <h2 class="section-title">
+            نبني المعرفة.<br>
+            ونطوّر الإنسان.
+        </h2>
+
+        <div class="profile-grid">
+
+            <div class="profile-text">
+
+                <p>
+                    أثر الخالدين هو فريق شبابي متعدد التخصصات
+                    يركز على البحث العلمي، الابتكار، التكنولوجيا،
+                    تطوير المهارات القيادية، والمشاركة المجتمعية.
+                </p>
+
+                <p>
+                    يوفر الفريق بيئة منظمة تتيح للشباب تحويل الأفكار
+                    إلى مشاريع بحثية، مبادرات تعليمية، أنشطة تقنية،
+                    وبرامج ذات أثر مجتمعي.
+                </p>
+
+                <p>
+                    يعتمد الفريق على الجمع بين التطور الأكاديمي
+                    والعمل الجماعي والقيادة والتواصل وإدارة المشاريع.
+                </p>
+
+            </div>
+
+
+            <div class="mission-card">
+
+                <h3>
+                    رسالتنا
+                </h3>
+
+                <p>
+                    تمكين الشباب بالمهارات البحثية والتفكير النقدي
+                    والقدرات القيادية، وخلق فرص حقيقية لإنتاج المعرفة
+                    وصناعة أثر علمي ومجتمعي.
+                </p>
+
+                <h3>
+                    رؤيتنا
+                </h3>
+
+                <p>
+                    بناء جيل قادر على إنتاج المعرفة، قيادة المشاريع،
+                    حل المشكلات المعقدة، والمساهمة في التطور العلمي
+                    والمجتمعي محليًا ودوليًا.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     STATS
+====================================================== -->
+
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    +80
+                </span>
+
+                <span class="stat-label">
+                    مقالًا علميًا
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    8
+                </span>
+
+                <span class="stat-label">
+                    أشهر من النشاط البحثي
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    6
+                </span>
+
+                <span class="stat-label">
+                    مجالات أساسية
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    ∞
+                </span>
+
+                <span class="stat-label">
+                    إمكانات لصناعة الأثر
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ACHIEVEMENTS
+====================================================== -->
+
+<section id="achievements">
+
+    <div class="container">
+
+        <div class="section-label">
+            02 — الإنجازات
+        </div>
+
+        <h2 class="section-title">
+            أبرز الإنجازات والأثر
+        </h2>
+
+        <p class="section-intro">
+            مجموعة من الأنشطة والمشاريع البحثية والتقنية والتعليمية
+            والمجتمعية التي ساهم الفريق في تطويرها وتنفيذها.
+        </p>
+
+
+        <div class="achievements-grid">
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    01 — البحث العلمي
+                </div>
+
+                <h3>
+                    أكثر من 80 مقالًا علميًا
+                </h3>
+
+                <p>
+                    تطوير والمساهمة في أكثر من 80 مقالًا علميًا
+                    خلال ما يقارب ثمانية أشهر من النشاط البحثي.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    02 — البحث الطبي
+                </div>
+
+                <h3>
+                    النواقل النانوية ومرض ألزهايمر
+                </h3>
+
+                <p>
+                    تطوير أفكار بحثية تستكشف التطبيقات المحتملة
+                    للنواقل النانوية في مجال علاج مرض ألزهايمر.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    03 — الفوتونيات
+                </div>
+
+                <h3>
+                    مستشعر فوتوني عالي الدقة
+                </h3>
+
+                <p>
+                    العمل على مفهوم بحثي يعتمد على التقنيات
+                    الفوتونية والاستشعار عالي الدقة.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    04 — التواصل العلمي
+                </div>
+
+                <h3>
+                    مجلة علمية
+                </h3>
+
+                <p>
+                    تطوير مجلة علمية تهدف إلى نشر المعرفة العلمية
+                    وتعزيز الوعي البحثي، مع حصولها على تقدير ضمن
+                    بيئات جامعية محلية.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    05 — البيئة
+                </div>
+
+                <h3>
+                    مدرستنا خضراء
+                </h3>
+
+                <p>
+                    مبادرة بيئية تهدف إلى تعزيز الاستدامة والوعي
+                    البيئي والمشاركة المسؤولة داخل المجتمع المدرسي.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    06 — الأثر المجتمعي
+                </div>
+
+                <h3>
+                    حقوق الإنسان وحقوق المرأة
+                </h3>
+
+                <p>
+                    المشاركة في أنشطة توعوية تتناول حقوق الإنسان
+                    وحقوق المرأة والمسؤولية الاجتماعية.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    07 — التكنولوجيا
+                </div>
+
+                <h3>
+                    مخيم Next Generation
+                </h3>
+
+                <p>
+                    المشاركة في بيئة تدريبية مكثفة تهتم بالبرمجة
+                    والتكنولوجيا والتطوير التقني.
+                </p>
+
+            </article>
+
+
+            <article class="achievement">
+
+                <div class="achievement-number">
+                    08 — التطوير الفكري
+                </div>
+
+                <h3>
+                    بطولات الشطرنج
+                </h3>
+
+                <p>
+                    تنظيم والمشاركة في أنشطة الشطرنج المدرسية
+                    لتعزيز التفكير الاستراتيجي والتحليل المنطقي.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     RESEARCH
+====================================================== -->
+
+<section
+    id="projects"
+    class="projects">
+
+    <div class="container">
+
+        <div class="section-label">
+            03 — الملف البحثي
+        </div>
+
+        <h2 class="section-title">
+            البحث والمشاريع
+        </h2>
+
+        <p class="section-intro">
+            مشاريع متعددة التخصصات تجمع بين العلوم والتكنولوجيا
+            والطب والهندسة والتواصل العلمي.
+        </p>
+
+
+        <article class="project">
+
+            <h3>
+                النواقل النانوية ومرض ألزهايمر
+            </h3>
+
+            <p>
+                مشروع بحثي يستكشف الدور المحتمل للنواقل النانوية
+                في تطوير تطبيقات طبية موجهة مرتبطة بمرض ألزهايمر،
+                من خلال الجمع بين النانو والعلوم الطبية والدوائية.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">
+                    تقنية النانو
+                </span>
+
+                <span class="tag">
+                    العلوم الطبية
+                </span>
+
+                <span class="tag">
+                    علم الأعصاب
+                </span>
+
+                <span class="tag">
+                    توصيل الدواء
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <h3>
+                مستشعر فوتوني عالي الدقة
+            </h3>
+
+            <p>
+                مفهوم بحثي تقني يركز على الاستشعار الدقيق باستخدام
+                التقنيات الفوتونية والبصرية، ويجمع بين الفيزياء
+                والهندسة وتقنيات القياس.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">
+                    الفيزياء
+                </span>
+
+                <span class="tag">
+                    الفوتونيات
+                </span>
+
+                <span class="tag">
+                    الهندسة
+                </span>
+
+                <span class="tag">
+                    المستشعرات
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <h3>
+                المجلة العلمية
+            </h3>
+
+            <p>
+                مبادرة للتواصل العلمي تهدف إلى جعل المعرفة العلمية
+                أكثر سهولة ووصولًا، وتشجيع الشباب على الاهتمام
+                بالبحث والمجالات الأكاديمية.
+            </p>
+
+            <div class="tags">
+
+                <span class="tag">
+                    الكتابة العلمية
+                </span>
+
+                <span class="tag">
+                    التواصل العلمي
+                </span>
+
+                <span class="tag">
+                    التعليم
+                </span>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     DEPARTMENTS
+====================================================== -->
+
+<section id="departments">
+
+    <div class="container">
+
+        <div class="section-label">
+            04 — الأقسام
+        </div>
+
+        <h2 class="section-title">
+            مجالات التخصص
+        </h2>
+
+        <p class="section-intro">
+            هيكل متعدد التخصصات يربط مختلف مجالات المعرفة
+            ويشجع على التعاون وتبادل الخبرات.
+        </p>
+
+
+        <div class="departments-grid">
+
+
+            <div class="department">
+
+                <h3>
+                    البحث العلمي
+                </h3>
+
+                <p>
+                    منهجية البحث، الكتابة الأكاديمية، المشاريع
+                    العلمية، والتحليل النقدي.
+                </p>
+
+            </div>
+
+
+            <div class="department">
+
+                <h3>
+                    الإعلام والتكنولوجيا
+                </h3>
+
+                <p>
+                    الإعلام الرقمي، المشاريع التقنية،
+                    التواصل العلمي، وصناعة المحتوى.
+                </p>
+
+            </div>
+
+
+            <div class="department">
+
+                <h3>
+                    البحث الدولي
+                </h3>
+
+                <p>
+                    الفرص الأكاديمية الدولية، المقارنات البحثية،
+                    والتعليم العالمي.
+                </p>
+
+            </div>
+
+
+            <div class="department">
+
+                <h3>
+                    البحث الفلكي
+                </h3>
+
+                <p>
+                    علم الفلك، علوم الفضاء، الموضوعات المرتبطة
+                    بالفيزياء الفلكية واستكشاف الكون.
+                </p>
+
+            </div>
+
+
+            <div class="department">
+
+                <h3>
+                    الأدب والمسرح
+                </h3>
+
+                <p>
+                    الكتابة الإبداعية، الأدب، المسرح، السرد،
+                    والتواصل الثقافي.
+                </p>
+
+            </div>
+
+
+            <div class="department">
+
+                <h3>
+                    التنمية المجتمعية
+                </h3>
+
+                <p>
+                    المبادرات التعليمية، الوعي البيئي،
+                    حقوق الإنسان، وتمكين الشباب.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     LEADERSHIP
+====================================================== -->
+
+<section
+    id="leadership"
+    class="leadership">
+
+    <div class="container">
+
+        <div class="section-label">
+            05 — القيادة
+        </div>
+
+        <h2 class="section-title">
+            نطوّر القادة،<br>
+            لا مجرد المشاركين.
+        </h2>
+
+        <p class="section-intro">
+            يعتمد النموذج التنظيمي للفريق على المسؤولية،
+            التفكير المستقل، التعاون، والتطور المستمر.
+        </p>
+
+
+        <div class="leadership-grid">
+
+
+            <div class="leadership-item">
+
+                <strong>
+                    تخطيط المشاريع
+                </strong>
+
+                التخطيط المنظم للمشاريع وتحويل الأفكار
+                إلى خطوات تنفيذية.
+
+            </div>
+
+
+            <div class="leadership-item">
+
+                <strong>
+                    تنسيق الفرق
+                </strong>
+
+                تعزيز التعاون بين الأقسام والتخصصات المختلفة.
+
+            </div>
+
+
+            <div class="leadership-item">
+
+                <strong>
+                    الأهداف الشهرية
+                </strong>
+
+                وضع أهداف واضحة للحفاظ على التطور المستمر.
+
+            </div>
+
+
+            <div class="leadership-item">
+
+                <strong>
+                    المهام الأسبوعية
+                </strong>
+
+                تحويل الخطط إلى مهام عملية قابلة للقياس والتنفيذ.
+
+            </div>
+
+
+            <div class="leadership-item">
+
+                <strong>
+                    تطوير الأداء
+                </strong>
+
+                متابعة المشاركة والمسؤولية والمساهمة داخل الفريق.
+
+            </div>
+
+
+            <div class="leadership-item">
+
+                <strong>
+                    القيادة المستقلة
+                </strong>
+
+                نقل الأعضاء من مرحلة المشاركة إلى مرحلة
+                تنفيذ المشاريع وقيادتها بشكل مستقل.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     COMPETENCIES
+====================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-label">
+            06 — الكفاءات
+        </div>
+
+        <h2 class="section-title">
+            الكفاءات الأساسية
+        </h2>
+
+        <p class="section-intro">
+            مجموعة من المهارات التي يتم تطويرها من خلال البحث،
+            المشاريع، العمل الجماعي، التدريب، والأنشطة المجتمعية.
+        </p>
+
+
+        <div class="competencies">
+
+            <span class="competency">
+                البحث العلمي
+            </span>
+
+            <span class="competency">
+                الكتابة الأكاديمية
+            </span>
+
+            <span class="competency">
+                التفكير النقدي
+            </span>
+
+            <span class="competency">
+                إدارة المشاريع
+            </span>
+
+            <span class="competency">
+                القيادة
+            </span>
+
+            <span class="competency">
+                العمل الجماعي
+            </span>
+
+            <span class="competency">
+                حل المشكلات
+            </span>
+
+            <span class="competency">
+                التواصل العلمي
+            </span>
+
+            <span class="competency">
+                الإعلام الرقمي
+            </span>
+
+            <span class="competency">
+                التكنولوجيا
+            </span>
+
+            <span class="competency">
+                تنظيم الفعاليات
+            </span>
+
+            <span class="competency">
+                العرض والتقديم
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     IMPACT
+====================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="impact-box">
+
+            <div class="section-label">
+                الأثر المؤسسي
+            </div>
+
+            <h2>
+                بحث. ابتكار. قيادة. أثر.
+            </h2>
+
+            <p>
+                يجمع أثر الخالدين بين البحث العلمي والتكنولوجيا
+                والقيادة والتعليم والإبداع والمشاركة المجتمعية،
+                لصناعة بيئة عملية تساهم في تطوير الشباب وإنتاج المعرفة.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="footer-title">
+                    أثر الخالدين
+                </div>
+
+                <div class="footer-subtitle">
+                    فريق شبابي للبحث العلمي والابتكار والتنمية
+                </div>
+
+            </div>
+
+
+            <div class="footer-slogan">
+                نبني المعرفة اليوم.<br>
+                نصنع الأثر للغد.
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
